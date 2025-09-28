@@ -12,7 +12,7 @@
     }
 
     body {
-      background: linear-gradient(135deg, #1915d7, #17c820);
+      background: linear-gradient(135deg, #f6d365, #fda085); /* Mocha Cream gradient */
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       height: 100vh;
@@ -22,11 +22,11 @@
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       padding: 40px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(253, 160, 133, 0.5);
       text-align: center;
       width: 400px;
     }
@@ -34,22 +34,22 @@
     h1 {
       margin-bottom: 20px;
       font-size: 2em;
-      text-shadow: 0 0 10px rgb(82, 212, 232);
+      text-shadow: 0 0 12px rgba(246, 211, 101, 0.9);
     }
 
     #display {
       font-size: 3em;
       margin: 20px 0;
       letter-spacing: 2px;
-      animation: pulse 1s infinite;
+      animation: glow 1.5s infinite;
     }
 
-    @keyframes pulse {
+    @keyframes glow {
       0%, 100% {
-        text-shadow: 0 0 10px cyan;
+        text-shadow: 0 0 15px #f6d365;
       }
       50% {
-        text-shadow: 0 0 20px cyan;
+        text-shadow: 0 0 25px #fda085;
       }
     }
 
@@ -63,7 +63,7 @@
 
     .buttons button {
       flex: 1;
-      background-color: #00c2ff;
+      background-color: #f4a261;
       border: none;
       padding: 10px;
       border-radius: 8px;
@@ -75,7 +75,7 @@
     }
 
     .buttons button:hover {
-      background-color: #5c00cc;
+      background-color: #e76f51;
       transform: scale(1.05);
     }
 
@@ -91,14 +91,14 @@
       background: rgba(0, 0, 0, 0.2);
       margin: 5px 0;
       padding: 6px 12px;
-      border-left: 4px solid cyan;
+      border-left: 4px solid #fda085;
       border-radius: 5px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>⏱ Stopwatch</h1>
+    <h1>Stopwatch</h1>
     <div id="display">00:00:00</div>
     <div class="buttons">
       <button onclick="start()">Start</button>
