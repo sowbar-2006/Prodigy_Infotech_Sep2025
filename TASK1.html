@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flavour Town - Interactive Snack Ordering</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #cce7ff, #99d6ff);
+      color: #00334d;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 102, 153, 0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    header.scrolled {
+      background: #005580;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #e0f7ff;
+      color: #00334d;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 150px 30px 100px;
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #002233;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: #004466;
+    }
+
+    .content h2 {
+      color: #002233;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .menu-item {
+      background: #0077b3;
+      padding: 20px;
+      border-radius: 10px;
+      width: 180px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.05);
+      background-color: #e0f7ff;
+      color: #00334d;
+    }
+
+    form {
+      background-color: #005580;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 20px auto;
+      text-align: left;
+      color: #fff;
+    }
+
+    form label, form input, form select, form textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    form input, form select, form textarea {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: #e0f7ff;
+      color: #00334d;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #ffffff;
+    }
+
+    #order-list {
+      margin-top: 40px;
+      padding: 10px;
+      background-color: rgba(0, 119, 179, 0.2);
+      border-radius: 8px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #order-list ul {
+      list-style: disc;
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    .feedback-msg {
+      color: lightgreen;
+      margin-top: 10px;
+    }
+
+    #feedback-list ul {
+      list-style: disc;
+      padding-left: 560px;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: #005580;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        display: none;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="navbar">
+    <div class="logo">FLAVOUR TOWN</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#feedback">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <h1>🍽️✨ Welcome to Flavour Town ✨🍽️</h1>
+    <p>Your taste journey begins here with every bite!</p>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="content">
+    <h2>OUR MENU</h2>
+    <div class="menu-list">
+      <div class="menu-item">🍕 Pizza</div>
+      <div class="menu-item">🍔 Burger</div>
+      <div class="menu-item">🍟 Fries</div>
+      <div class="menu-item">🥤 Soda</div>
+      <div class="menu-item">🌮 Tacos</div>
+      <div class="menu-item">🍉 Watermelon Juice</div>
+      <div class="menu-item">🍋 Lemon Juice</div>
+      <div class="menu-item">🌹 Rosemilk</div>
+      <div class="menu-item">🧃 Frooti/Mazza</div>
+      <div class="menu-item">🥤 Cavin's Milkshake</div>
+    </div>
+  </section>
+
+  <!-- Order Form -->
+  <section id="order" class="content">
+    <h2>PLACE YOUR ORDER</h2>
+    <form id="orderForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" required placeholder="e.g. Alex" />
+
+      <label for="snack">Choose Snack</label>
+      <select id="snack" required>
+        <option value="">-- Select --</option>
+        <option>Pizza</option>
+        <option>Burger</option>
+        <option>Fries</option>
+        <option>Soda</option>
+        <option>Tacos</option>
+        <option>Watermelon Juice</option>
+        <option>Lemon Juice</option>
+        <option>Rosemilk</option>
+        <option>Frooti/Maaza</option>
+        <option>Cavin's Milkshake</option>
+      </select>
+
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" required min="1" value="1" />
+
+      <button type="submit">Order Now</button>
+    </form>
+
+    <div id="order-list">
+      <h3>ORDER SUMMARY</h3>
+      <ul id="orders"></ul>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section id="feedback" class="content">
+    <h2>FEEDBACK</h2>
+    <form id="feedbackForm">
+      <label for="feedbackName">Your Name</label>
+      <input type="text" id="feedbackName" required placeholder="e.g. Priya" />
+
+      <label for="feedbackText">Your Feedback</label>
+      <textarea id="feedbackText" rows="4" required placeholder="Write your thoughts..."></textarea>
+
+      <button type="submit">Submit Feedback</button>
+      <div class="feedback-msg" id="feedbackMessage"></div>
+    </form>
+
+    <div id="feedback-list">
+      <h3>FEEDBACK LIST</h3>
+      <ul id="feedbacks"></ul>
+    </div>
+  </section>
+
+  <!-- JS Logic -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Handle Order Form
+    const orderForm = document.getElementById('orderForm');
+    const ordersList = document.getElementById('orders');
+
+    orderForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const snack = document.getElementById('snack').value;
+      const quantity = document.getElementById('quantity').value;
+
+      const listItem = document.createElement('li');
+      listItem.textContent = `${name} - ${quantity} ${snack}`;
+      ordersList.appendChild(listItem);
+
+      orderForm.reset();
+    });
+
+    // Handle Feedback Form
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    const feedbacksList = document.getElementById('feedbacks');
+
+    feedbackForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('feedbackName').value;
+      const feedback = document.getElementById('feedbackText').value;
+
+      const listItem = document.createElement('li');
+      listItem.textContent = `${name} - ${feedback}`;
+      feedbacksList.appendChild(listItem);
+
+      feedbackMessage.textContent = `✅ Thank you for your feedback!`;
+      feedbackForm.reset();
+    });
+  </script>
+
+</body>
+</html>
