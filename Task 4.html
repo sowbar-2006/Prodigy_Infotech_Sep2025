@@ -1,0 +1,386 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sowbarnika S — Portfolio</title>
+  <meta name="description" content="Sowbarnika S — Aspiring Web Developer. Full-stack projects, skills and internship experience."/>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1320;
+      --accent:#3366ff;
+      --muted:#9aa7c7;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-w:1100px;
+      --gap:20px;
+      --fw-regular: 400;
+      --fw-medium: 600;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071028 0%, #061022 100%);
+      color:#e7eefc;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 16px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max-w);
+    }
+
+    /* Header / Nav */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:54px;height:54px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent), #7b5cff);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:white;
+      box-shadow:0 6px 20px rgba(51,102,255,0.12);
+      flex-shrink:0;
+    }
+    h1.site-name{font-size:18px;margin:0}
+    p.tag{margin:0;color:var(--muted);font-size:13px}
+
+    nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .nav-links{display:flex;gap:10px}
+    .nav-links a{
+      color:var(--muted);text-decoration:none;font-size:14px;padding:8px 10px;border-radius:10px;
+    }
+    .nav-links a:hover{color:white;background:var(--glass)}
+
+    .cta{
+      background:var(--accent); color:white; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:600;
+      box-shadow: 0 6px 18px rgba(51,102,255,0.12);
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:var(--gap);
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:28px;border-radius:var(--radius);backdrop-filter: blur(6px);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+    .intro h2{margin:4px 0 8px;font-size:28px}
+    .intro p.lead{color:var(--muted);margin:0 0 16px}
+
+    .actions{display:flex;gap:10px;margin-top:14px}
+    .btn{
+      border:1px solid rgba(255,255,255,0.06);
+      padding:10px 12px;border-radius:10px;text-decoration:none;color:white;font-weight:600;
+    }
+    .btn.ghost{background:transparent;color:var(--muted)}
+    .stats{display:flex;gap:12px;margin-top:18px}
+    .stat{background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:10px;font-size:13px;color:var(--muted)}
+
+    /* Right quick card */
+    .quick{
+      padding:18px;border-radius:12px;background:linear-gradient(180deg,#0f2348 0%, #0b1736 100%);
+    }
+    .quick h3{margin:0 0 8px;font-size:16px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Sections */
+    section{margin-bottom:22px}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .section-title h3{margin:0}
+    .grid{
+      display:grid;
+      gap:14px;
+    }
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600;font-size:13px}
+
+    /* Projects list */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .project{
+      padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;flex-direction:column;gap:8px;
+    }
+    .project h4{margin:0}
+    .project p{margin:0;color:var(--muted);font-size:14px}
+    .project .proj-actions{margin-top:auto;display:flex;gap:8px}
+    .link{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px}
+
+    /* Experience */
+    .exp-list{display:flex;flex-direction:column;gap:10px}
+    .exp{background:var(--card);padding:12px;border-radius:10px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .contact-card{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)}
+    .footer{color:var(--muted);font-size:13px;padding:18px;text-align:center}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+      nav{display:none}
+      header{align-items:flex-start}
+    }
+    @media (max-width:420px){
+      .container{padding:0 8px}
+      .logo{width:44px;height:44px}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    a.no-deco{text-decoration:none;color:inherit}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SS</div>
+        <div>
+          <h1 class="site-name">Sowbarnika S</h1>
+          <p class="tag">Aspiring Web Developer — Turning Ideas into Code</p>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="cta" href="#contact">Get in touch</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card intro">
+          <h2>Hello — I'm <strong>Sowbarnika</strong></h2>
+          <p class="lead">
+            Currently pursuing B.Tech Information Technology at National Engineering College. I have strong interest in full-stack development and a passion for exploring new technologies. I enjoy building responsive, user-friendly web applications.
+          </p>
+
+          <div class="actions">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn ghost" href="#experience">My Experience</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><strong>Skills</strong><div class="muted">HTML • CSS • JS • Backend</div></div>
+            <div class="stat"><strong>Role</strong><div class="muted">Web Developer (Intern)</div></div>
+            <div class="stat"><strong>Education</strong><div class="muted">B.Tech, IT — NEC</div></div>
+          </div>
+        </div>
+
+        <aside class="card quick">
+          <h3>Quick info</h3>
+          <p class="small"><strong>Position:</strong> Web Developer Intern at Prodigy Infotech</p>
+          <p class="small"><strong>Looking for:</strong> Internship / Projects in Full-stack Development</p>
+          <div style="height:10px"></div>
+          <p class="small"><strong>Contact:</strong> <a href="mailto:sowbar2006@gmail.com" class="link">sowbar2006@gmail.com</a></p>
+        </aside>
+      </section>
+
+      <section id="about" class="card">
+        <div class="section-title">
+          <h3>About me</h3>
+          <div class="muted">B.Tech IT student • Full-stack enthusiast</div>
+        </div>
+        <p>
+          As a passionate web developer, I have experience in HTML, CSS, JavaScript and backend technologies to create dynamic and responsive web applications.
+          I enjoy building responsive and user-friendly web applications and exploring cloud & modern stacks.
+        </p>
+        <div style="height:12px"></div>
+        <p class="muted"><strong>Education:</strong> Currently pursuing B.Tech Information Technology at National Engineering College.</p>
+      </section>
+
+      <section id="skills">
+        <div class="section-title">
+          <h3>Skills</h3>
+          <div class="muted">Tools & technologies I use</div>
+        </div>
+
+        <div class="card">
+          <div class="skills">
+            <div class="skill">HTML5</div>
+            <div class="skill">CSS3</div>
+            <div class="skill">JavaScript (ES6+)</div>
+            <div class="skill">Node.js</div>
+            <div class="skill">Express</div>
+            <div class="skill">React (basic)</div>
+            <div class="skill">MongoDB / SQL</div>
+            <div class="skill">REST APIs</div>
+            <div class="skill">Git & GitHub</div>
+            <div class="skill">Responsive Design</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-title">
+          <h3>Projects</h3>
+          <div class="muted">Personal & Academic</div>
+        </div>
+
+        <div class="projects">
+          <!-- Project 1 -->
+          <article class="project">
+            <h4>Project A — Responsive Portfolio</h4>
+            <p class="muted">A responsive portfolio site built using HTML, CSS and a bit of JS. Shows projects and contact form.</p>
+            <div class="proj-actions">
+              <a class="link" href="#" target="_blank" rel="noopener">Live demo</a>
+              <a class="link" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project">
+            <h4>Project B — ToDo App (Full-stack)</h4>
+            <p class="muted">A CRUD ToDo app using Node.js, Express and MongoDB. Implemented authentication and REST APIs.</p>
+            <div class="proj-actions">
+              <a class="link" href="#" target="_blank" rel="noopener">Live demo</a>
+              <a class="link" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 3 (placeholder) -->
+          <article class="project">
+            <h4>Project C — College Project</h4>
+            <p class="muted">Academic project: description goes here. Replace with your actual project summary.</p>
+            <div class="proj-actions">
+              <a class="link" href="#" target="_blank" rel="noopener">Live demo</a>
+              <a class="link" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Project 4 (placeholder) -->
+          <article class="project">
+            <h4>Project D — Mini Game / Tool</h4>
+            <p class="muted">Small interactive app built with vanilla JS / React. Replace with details.</p>
+            <div class="proj-actions">
+              <a class="link" href="#" target="_blank" rel="noopener">Live demo</a>
+              <a class="link" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="section-title">
+          <h3>Professional Experience</h3>
+          <div class="muted">Internships & roles</div>
+        </div>
+
+        <div class="exp-list">
+          <div class="exp">
+            <strong>Web Developer Intern — Prodigy Infotech</strong>
+            <div class="muted">Internship — Responsibilities:</div>
+            <ul class="muted">
+              <li>Worked on front-end features using HTML/CSS/JS.</li>
+              <li>Assisted in building responsive pages and small back-end endpoints.</li>
+              <li>Collaborated with team on debugging, testing and deployment tasks.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-title">
+          <h3>Contact</h3>
+          <div class="muted">Let's build something — reach out!</div>
+        </div>
+
+        <div class="card contact-grid">
+          <div class="contact-card">
+            <p><strong>Email</strong></p>
+            <p class="muted"><a href="mailto:sowbar2006@gmail.com" class="link">sowbar2006@gmail.com</a></p>
+            <p style="height:6px"></p>
+            <p><strong>LinkedIn</strong></p>
+            <p class="muted"><a href="#" class="link" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <p style="height:6px"></p>
+            <p><strong>GitHub</strong></p>
+            <p class="muted"><a href="#" class="link" target="_blank">github.com/yourusername</a></p>
+          </div>
+
+          <div class="contact-card">
+            <p><strong>Quick message</strong></p>
+            <p class="muted">Use the template below to send a simple email or copy-paste into your mail client:</p>
+            <textarea id="msg" style="width:100%;height:120px;border-radius:8px;padding:8px;background:#061126;border:1px solid rgba(255,255,255,0.03);color:#dfeaff;">
+Hi Sowbarnika,
+
+I saw your portfolio and would like to discuss a project / internship opportunity.
+
+Best,
+[Name]
+            </textarea>
+            <div style="height:8px"></div>
+            <button id="copyBtn" class="btn">Copy message</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer card">
+        <div>Made with ❤️ — Sowbarnika S • Aspiring Web Developer</div>
+        <div style="height:6px"></div>
+        <div class="muted">Tip: replace placeholder projects & links with your real repos and demos.</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Copy quick message
+    document.getElementById('copyBtn').addEventListener('click', ()=>{
+      const t = document.getElementById('msg');
+      t.select();
+      t.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(t.value).then(()=>{
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied!';
+        setTimeout(()=> btn.textContent='Copy message',1500);
+      });
+    });
+  </script>
+</body>
+</html>
+```
